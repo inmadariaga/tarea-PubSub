@@ -13,6 +13,10 @@ class Api::V1::TransactionsController < Api::V1::BaseController
 
   def create
     puts transactions_params
+    suscription.listen do |message|
+      puts message
+      message.acknowledge!
+    end
     /respond_with Transaction.create!(transactions_params)/
   end
 
@@ -28,6 +32,11 @@ class Api::V1::TransactionsController < Api::V1::BaseController
 
   def transaction
     @transaction ||= Transaction.find_by!(id: params[:id])
+  end
+
+  def suscription
+    pubsub = Google::Cloud::Pubsub.new
+    @suscription ||= pubsub.subscription ENV['canvas_id']
   end
 
   def transactions_params
