@@ -18,7 +18,7 @@ class Api::V1::TransactionsController < Api::V1::BaseController
     else
       puts "NO"
     end
-    /respond_with Transaction.create!(params)/
+    respond_with Transaction.create!(params)
   end
 
   def update
