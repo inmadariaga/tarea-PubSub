@@ -1,6 +1,8 @@
 require "google/cloud/pubsub"
 
 class Api::V1::TransactionsController < Api::V1::BaseController
+  skip_before_action :verify_authenticity_token
+
   def index
     respond_with Transaction.all
   end
