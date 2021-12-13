@@ -11,10 +11,6 @@ class Api::V1::TransactionsController < Api::V1::BaseController
 
   def create
     puts transactions_params
-    suscription.listen do |message|
-      puts message
-      message.acknowledge!
-    end
     respond_with Transaction.create!(transactions_params)
   end
 
@@ -34,10 +30,5 @@ class Api::V1::TransactionsController < Api::V1::BaseController
 
   def transactions_params
     params.require(:transaction).permit
-  end
-
-  def suscription
-    pubsub ||= Google::Cloud::Pubsub.new
-    @suscription ||= pubsub.subscription ENV['canvas_id']
   end
 end
