@@ -14,7 +14,7 @@ class Api::V1::TransactionsController < Api::V1::BaseController
   def create
     decoded_data = decode(transactions_params["data"])
     if decoded_data.length == 64
-      params = elements(decoded_data, transactions_params["messageId"].to_i), transactions_params["publishTime"])
+      params = elements(decoded_data, transactions_params["messageId"].to_i, transactions_params["publishTime"])
     else
       puts "NO"
     end
