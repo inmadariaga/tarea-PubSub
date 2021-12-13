@@ -13,6 +13,9 @@ class Api::V1::TransactionsController < Api::V1::BaseController
 
   def create
     puts transactions_params
+    puts transactions_params["data"]
+    puts transactions_params["messageId"]
+    puts transactions_params["message_id"]
     /respond_with Transaction.create!(transactions_params)/
   end
 
@@ -29,7 +32,7 @@ class Api::V1::TransactionsController < Api::V1::BaseController
   def transaction
     @transaction ||= Transaction.find_by!(id: params[:id])
   end
-  
+
   def transactions_params
     params.require(:message).permit(:attributes, :data, :messageId, :message_id, :publishTime, :publish_time)
   end
