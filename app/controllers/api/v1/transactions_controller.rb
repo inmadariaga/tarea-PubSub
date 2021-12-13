@@ -13,7 +13,7 @@ class Api::V1::TransactionsController < Api::V1::BaseController
 
   def create
     puts transactions_params
-    respond_with Transaction.create!(transactions_params)
+    /respond_with Transaction.create!(transactions_params)/
   end
 
   def update
