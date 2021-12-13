@@ -31,6 +31,6 @@ class Api::V1::TransactionsController < Api::V1::BaseController
   end
 
   def transactions_params
-    params.require(:transaction).permit
+    params.require(:message).permit(:attributes, :data, :messageId, :message_id, :publishTime, :publish_time)
   end
 end
