@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_13_221445) do
+ActiveRecord::Schema.define(version: 2021_12_13_230037) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,8 +25,8 @@ ActiveRecord::Schema.define(version: 2021_12_13_221445) do
     t.integer "destination_bank"
     t.integer "destination_account"
     t.integer "amount"
-    t.integer "messageId"
     t.string "publishTime"
+    t.bigint "message_id"
   end
 
 end
