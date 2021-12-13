@@ -15,6 +15,8 @@ class Api::V1::TransactionsController < Api::V1::BaseController
     decoded_data = decode(transactions_params["data"])
     if decoded_data.length == 64
       params = elements(decoded_data, transactions_params["messageId"].to_i, transactions_params["publishTime"])
+      puts "PARAMS"
+      puts params
     else
       puts "NO"
     end
@@ -51,6 +53,6 @@ class Api::V1::TransactionsController < Api::V1::BaseController
     destination_bank = decoded_data[31..37].to_i
     destination_account = decoded_data[38..47].to_i
     amount = decoded_data[48..63].to_i
-    return { operation: operation, transaction_id: id, origin_bank: origin_bank, origin_account: origin_account, destination_bank: destination_bank, destination_account: destination_account, amount: amount, messageId: messageId, publishTime: publishTime }
+    return { operation: operation, transaction_id: id, origin_bank: origin_bank, origin_account: origin_account, destination_bank: destination_bank, destination_account: destination_account, amount: amount, message_id: messageId, publishTime: publishTime }
   end
 end
