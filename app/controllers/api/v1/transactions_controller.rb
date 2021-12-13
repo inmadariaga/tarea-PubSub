@@ -6,7 +6,7 @@ class Api::V1::TransactionsController < Api::V1::BaseController
   end
 
   def show
-    respond_with transactions
+    respond_with transaction
   end
 
   def create
@@ -15,25 +15,25 @@ class Api::V1::TransactionsController < Api::V1::BaseController
       puts message
       message.acknowledge!
     end
-    respond_with Transactions.create!(transactions_params)
+    respond_with Transaction.create!(transactions_params)
   end
 
   def update
-    respond_with transactions.update!(transactions_params)
+    respond_with transaction.update!(transactions_params)
   end
 
   def destroy
-    respond_with transactions.destroy!
+    respond_with transaction.destroy!
   end
 
   private
 
-  def transactions
-    @transactions ||= Transaction.find_by!(id: params[:id])
+  def transaction
+    @transaction ||= Transaction.find_by!(id: params[:id])
   end
 
   def transactions_params
-    params.require(:transactions).permit
+    params.require(:transaction).permit
   end
 
   def suscription

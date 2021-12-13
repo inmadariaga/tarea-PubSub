@@ -1,5 +1,5 @@
 class Api::V1::TransactionsSerializer < ActiveModel::Serializer
-  type :transactions
+  type :transaction
 
   attributes(
     :created_at,
