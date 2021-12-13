@@ -29,12 +29,7 @@ class Api::V1::TransactionsController < Api::V1::BaseController
   def transaction
     @transaction ||= Transaction.find_by!(id: params[:id])
   end
-
-  def suscription
-    pubsub = Google::Cloud::Pubsub.new
-    @suscription ||= pubsub.subscription ENV['canvas_id']
-  end
-
+  
   def transactions_params
     params.require(:message).permit(:attributes, :data, :messageId, :message_id, :publishTime, :publish_time)
   end
