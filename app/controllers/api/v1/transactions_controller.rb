@@ -38,6 +38,6 @@ class Api::V1::TransactionsController < Api::V1::BaseController
   end
 
   def decode(data)
-    return JSON.parse(Base64.decode64(data))
+    return Base64.decode64(data)
   end
 end
