@@ -2,7 +2,7 @@ require "google/cloud/pubsub"
 
 class Api::V1::TransactionsController < Api::V1::BaseController
   def index
-    respond_with Transactions.all
+    respond_with Transaction.all
   end
 
   def show
@@ -29,7 +29,7 @@ class Api::V1::TransactionsController < Api::V1::BaseController
   private
 
   def transactions
-    @transactions ||= Transactions.find_by!(id: params[:id])
+    @transactions ||= Transaction.find_by!(id: params[:id])
   end
 
   def transactions_params
