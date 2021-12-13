@@ -12,16 +12,13 @@ class Api::V1::TransactionsController < Api::V1::BaseController
   end
 
   def create
-    puts transactions_params
-    puts decode(transactions_params["data"])
-    puts transactions_params["messageId"]
-    puts transactions_params["message_id"]
-    if decode(transactions_params["data"]).length == 64
-      puts elements(decode(transactions_params["data"]))
+    decoded_data = decode(transactions_params["data"])
+    if decoded_data.length == 64
+      params = elements(decoded_data, transactions_params["messageId"].to_i), transactions_params["publishTime"])
     else
-      pute "NO"
+      puts "NO"
     end
-    /respond_with Transaction.create!(transactions_params)/
+    respond_with Transaction.create!(params)
   end
 
   def update
@@ -46,7 +43,7 @@ class Api::V1::TransactionsController < Api::V1::BaseController
     return Base64.decode64(data)
   end
 
-  def elements(decoded_data)
+  def elements(decoded_data, messageId, publishTime)
     operation = decoded_data[0..3].to_i
     id = decoded_data[4..13].to_i
     origin_bank = decoded_data[14..20].to_i
@@ -54,6 +51,6 @@ class Api::V1::TransactionsController < Api::V1::BaseController
     destination_bank = decoded_data[31..37].to_i
     destination_account = decoded_data[38..47].to_i
     amount = decoded_data[48..63].to_i
-    return { operation: operation, id: id, origin_bank: origin_bank, origin_account: origin_account, destination_bank: destination_bank, destination_account: destination_account, amount: amount }
+    return { operation: operation, transaction_id: id, origin_bank: origin_bank, origin_account: origin_account, destination_bank: destination_bank, destination_account: destination_account, amount: amount, messageId: messageId, publishTime: publishTime }
   end
 end
