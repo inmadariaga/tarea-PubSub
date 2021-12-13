@@ -13,10 +13,6 @@ class Api::V1::TransactionsController < Api::V1::BaseController
 
   def create
     puts transactions_params
-    suscription.listen do |message|
-      puts message
-      message.acknowledge!
-    end
     /respond_with Transaction.create!(transactions_params)/
   end
 
