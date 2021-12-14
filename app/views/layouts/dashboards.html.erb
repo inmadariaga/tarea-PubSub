@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <div class="container">
+            <table>
+                <tr>
+                <td> Operation </td>
+                <td> Transaction ID </td>
+                <td> Origin Bank </td>
+                <td> Origin Account </td>
+                <td> Destination Bank </td>
+                <td> Destination Account </td>
+                <td> Amount </td>
+                <td> Publish Time </td>
+                </tr>
+                <% @tramsactions.each do |t| %>
+                <tr>
+                    <td>
+                        <%= t.operation %>
+                    </td>
+                    <td>
+                        <%= t.transaction_id %>
+                    </td>
+                    <td>
+                        <%= t.origin_bank %>
+                    </td>
+                    <td>
+                        <%= t.origin_account %>
+                    </td>
+                    <td>
+                        <%= t.destination_bank %>
+                    </td>
+                    <td>
+                        <%= t.destination_account %>
+                    </td>
+                    <td>
+                        <%= t.amount %>
+                    </td>
+                    <td>
+                        <%= t.publishTime %>
+                    </td>
+                </tr>
+                <% end %>
+            </table>
+        </div>
+    </body>
+</html>

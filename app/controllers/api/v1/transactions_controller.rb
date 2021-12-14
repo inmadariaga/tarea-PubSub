@@ -15,12 +15,10 @@ class Api::V1::TransactionsController < Api::V1::BaseController
     decoded_data = decode(transactions_params["data"])
     if decoded_data.length == 64
       params = elements(decoded_data, transactions_params["messageId"].to_i, transactions_params["publishTime"])
-      puts "PARAMS"
-      puts params
-    else
-      puts "NO"
+      if params["operation"] == 2200 || params["operation"] == 2400
+        respond_with Transaction.create(params)
+      end
     end
-    respond_with Transaction.create!(params)
   end
 
   def update
